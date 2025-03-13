@@ -1,6 +1,3 @@
-import callWeatherAPI from "./callAPI";
+import formHandler from "./formHandler";
 
-const callWeatchAPIInstance = callWeatherAPI();
-
-const result = callWeatchAPIInstance.fetchCityData("London");
-console.log(result);
+const formHandlerInstance = formHandler();

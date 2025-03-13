@@ -6,25 +6,36 @@
     <title>Weather App</title>
 </head>
 <body>
-    <div class="input">
-        <form action="" id="searchCity">
-            <div class="row">
-                <label for="city">City: </label>
-                <input type="text" id="city">
-                <button type="submit" form="searchCity" id="btn">Search</button>
-            </div>
-        </form>
-        <div class="cityHeader"></div>
-        <div class="weatherInfo" id="mainDiv">
-            <div class="cell">
-                <div class="day"></div>
-                <div class="medianTemp"></div>
-                <div class="temp">
-                    <div class="mintemp"></div>
-                    <div class="maxtemp"></div>
+    <div class="main">
+        <div class="input">
+            <form action="" id="searchCity">
+                <div class="row">
+                    <label for="city">City: </label>
+                    <input type="text" id="city">
+                    <button type="submit" form="searchCity" id="btn">Search</button>
                 </div>
-                <div class="rain"></div>
-                <div class="icons"></div>
+            </form>
+        </div>
+        <div class="mainContent">
+            <div class="cityHeader"></div>
+            <div class="currentData">
+                <div class="basicDiv">
+                </div>
+                <div class="extraData">
+        
+                </div>
+            </div>
+            <div class="weatherInfo" id="forecastDiv">
+                <div class="cell">
+                    <div class="day"></div>
+                    <div class="medianTemp"></div>
+                    <div class="temp">
+                        <div class="mintemp"></div>
+                        <div class="maxtemp"></div>
+                    </div>
+                    <div class="rain"></div>
+                    <div class="icons"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -14,7 +14,8 @@ export default function callWeatchAPI() {
 
     async function processData(input) {
         const responseJSON = await input.json();
-        const output = {"city": responseJSON.address, "weatherForecast" : responseJSON.days};
+        const output = {"city": responseJSON.resolvedAddress, "currentWeather": responseJSON.currentConditions, "weatherForecast" : responseJSON.days};
+        console.log(responseJSON);
         return output
     }
 

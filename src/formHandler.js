@@ -22,14 +22,14 @@ export default function formHandler() {
     async function eventHandler(e) {
         e.preventDefault();
         const city = getFormInfo();
-        if (city) {
-            try {
-                const result = await callWeatchAPIInstance.fetchCityData(city);
-                buildHTMLInstance.buildPage(result);  
-            } catch {
-                console.log("Bad Request")
-            }
-
+        if (!city) {
+            return
+        }
+        try {
+            const result = await callWeatchAPIInstance.fetchCityData(city);
+            buildHTMLInstance.buildPage(result);  
+        } catch {
+            console.log("Bad Request")
         }
     }
 

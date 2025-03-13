@@ -4,13 +4,13 @@ export default function callWeatchAPI() {
     async function fetchCityData(city) {
         let URL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${APIKEY}`;
         const response = await fetch(URL);
-        await processData(response);
+        return await processData(response);
     }
 
     async function processData(input) {
         const responseJSON = await input.json();
-        console.log(responseJSON);
-        console.log(responseJSON.address);
+        const output = {"city": responseJSON.address, "weather forecast" : responseJSON.days};
+        return output
     }
 
     return {

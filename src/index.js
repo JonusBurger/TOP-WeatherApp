@@ -2,4 +2,5 @@ import callWeatherAPI from "./callAPI";
 
 const callWeatchAPIInstance = callWeatherAPI();
 
-callWeatchAPIInstance.fetchCityData("London");
+const result = callWeatchAPIInstance.fetchCityData("London");
+console.log(result);

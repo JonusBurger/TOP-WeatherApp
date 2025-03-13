@@ -1,10 +1,12 @@
 import callWeatherAPI from "./callAPI";
+import buildHTML from "./htmlHandler";
 
 export default function formHandler() {
     const formInput = document.getElementById("city");
     const btn = document.getElementById("btn");
 
     const callWeatchAPIInstance = callWeatherAPI();
+    const buildHTMLInstance = buildHTML();
 
     function getFormInfo() {
         const output = formInput.value;
@@ -17,13 +19,17 @@ export default function formHandler() {
         return output
     }
 
-    function eventHandler(e) {
+    async function eventHandler(e) {
         e.preventDefault();
         const city = getFormInfo();
         if (city) {
-            console.log(city);
-            const result = callWeatchAPIInstance.fetchCityData(city);
-            console.log(result);    
+            try {
+                const result = await callWeatchAPIInstance.fetchCityData(city);
+                buildHTMLInstance.buildPage(result);  
+            } catch {
+                console.log("Bad Request")
+            }
+
         }
     }
 

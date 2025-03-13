@@ -13,9 +13,16 @@ export default function buildHTML() {
     function buildPage(weatherData) {
         // clear old Data
         emptyCells();
-        
-        // Change Header
 
+        // Change Header
+        console.log(weatherData.city)
         // build loop for days
+        for (let day of weatherData.weatherForecast) {
+            console.log(day);
+        }
+    }
+
+    return {
+        buildPage
     }
 }

@@ -52,7 +52,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    grid-template-columns: minmax(400px, 840px);
+    grid-template-columns: minmax(400px, 800px);
     grid-template-rows: 100px minmax(min-content, 1fr) 300px;
 }
 
@@ -86,7 +86,26 @@ form {
     align-items: center;
 }
 
+.cell {
+    display: flex;
+    gap: 10px;
+}
+
+.temp {
+    display: flex;
+}
+
 body {
     font-family: "Roboto", sans-serif;
+    color: white;
+    background: url(../assets/forest.jpg) center center fixed;
+    --primary-color: rgb(17, 34, 32);
+    --secondary-color: rgb(53, 60, 37);
+    --tercary-color: rgb(169, 162, 151);
+    --background-overlay: rgba(17, 34, 32, 0.3);
+}
+
+.mainContent {
+    background-color: var(--background-overlay);
 }
 

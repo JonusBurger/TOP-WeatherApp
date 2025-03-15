@@ -1,5 +1,4 @@
 import unitTransform from "./unitTransformer";
-import test from "../assets/icons"
 
 const MAPICONS = {
     "snow" : "../assets/icons/snowy.png",
@@ -63,6 +62,16 @@ export default function buildHTML() {
         const currentTempMax = element.querySelector(".currentTempMax");
 
         currentTemp.innerText = unitTransform(weatherData.currentWeather.temp, transform);
+        // Display Icon of current weather
+        emptyElement(currentIcon);
+        const imgLink =  MAPICONS.weatherData.currentWeather.icon;
+        const img = new Image(); // Create a new Image object
+        img.onload = () => {
+            // You can now use the image, e.g., append it to the DOM
+            currentIcon.appendChild(img);
+        };
+        img.src = imgLink;
+
         currentTempMin.innerText = "T: " + unitTransform(weatherData.weatherForecast[0].tempmin, transform);
         currentTempMax.innerText = "H: " + unitTransform(weatherData.weatherForecast[0].tempmax), transform;
     }

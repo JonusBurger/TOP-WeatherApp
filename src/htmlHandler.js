@@ -1,4 +1,17 @@
 import unitTransform from "./unitTransformer";
+import test from "../assets/icons"
+
+const MAPICONS = {
+    "snow" : "../assets/icons/snowy.png",
+    "rain" : "../assets/icons/rainy.png",
+    "fog" : "../assets/icons/cloud.png",
+    "wind" : "../assets/icons/windy.png",
+    "cloudy" : "../assets/icons/cloud.png",
+    "partly-cloudy-day" : "../assets/icons/cloudy.png",
+    "clear-day" : "../assets/icons/sun.png",
+    "partly-cloudy-night" : "../assets/icons/cloudy.png",
+    "clear-night" : "../assets/icons/sun.png",
+};
 
 export default function buildHTML() {
     const forecastDiv = document.getElementById("forecastDiv");
@@ -50,8 +63,8 @@ export default function buildHTML() {
         const currentTempMax = element.querySelector(".currentTempMax");
 
         currentTemp.innerText = unitTransform(weatherData.currentWeather.temp, transform);
-        currentTempMin.innerText = unitTransform(weatherData.weatherForecast[0].tempmin, transform);
-        currentTempMax.innerText = unitTransform(weatherData.weatherForecast[0].tempmax), transform;
+        currentTempMin.innerText = "T: " + unitTransform(weatherData.weatherForecast[0].tempmin, transform);
+        currentTempMax.innerText = "H: " + unitTransform(weatherData.weatherForecast[0].tempmax), transform;
     }
 
     function buildHeader(cityName) {
@@ -77,3 +90,6 @@ export default function buildHTML() {
         buildPage
     }
 }
+
+
+// To-DO: https://www.flaticon.com/free-icon/cloudy_1163657?term=weather&page=1&position=2&origin=style&related_id=1163657 <--Download

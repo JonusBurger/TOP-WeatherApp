@@ -76,14 +76,21 @@ form {
 .mainContent {
     display: grid;
     grid-template-columns: repeat(auto-fill, 400px);
-    grid-template-rows: 60px min-content;
+    grid-template-rows: 150px min-content;
 }
 
 .cityHeader {
+    padding: 20px;
     grid-column: 1 / 3;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.basicDiv {
+    display: grid;
+    grid-template-rows: 120px 80px;
+    grid-template-columns: 1fr 1fr;
 }
 
 .cell {
@@ -107,5 +114,20 @@ body {
 
 .mainContent {
     background-color: var(--background-overlay);
+}
+
+.bigText {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.midText {
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.smallText {
+    text-align: center;
 }
 

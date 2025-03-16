@@ -1,16 +1,29 @@
 import unitTransform from "./unitTransformer";
 
+
+const iconContext = require.context('../assets/icons', false, /\.png$/);
 const MAPICONS = {
-    "snow" : "../assets/icons/snowy.png",
-    "rain" : "../assets/icons/rainy.png",
-    "fog" : "../assets/icons/cloud.png",
-    "wind" : "../assets/icons/windy.png",
-    "cloudy" : "../assets/icons/cloud.png",
-    "partly-cloudy-day" : "../assets/icons/cloudy.png",
-    "clear-day" : "../assets/icons/sun.png",
-    "partly-cloudy-night" : "../assets/icons/cloudy.png",
-    "clear-night" : "../assets/icons/sun.png",
+    "snow" : iconContext('./snowy.png'),
+    "rain" : iconContext('./rainy.png'),
+    "fog" : iconContext('./cloud.png'),
+    "wind" : iconContext('./windy.png'),
+    "cloudy" : iconContext('./cloudy.png'),
+    "partly-cloudy-day" : iconContext('./cloudy.png'),
+    "clear-day" : iconContext('./sun.png'),
+    "partly-cloudy-night" : iconContext('./cloudy.png'),
+    "clear-night" : iconContext('./sun.png'),
 };
+//const MAPICONS = {
+//    "snow" : "../assets/icons/snowy.png",
+//    "rain" : "../assets/icons/rainy.png",
+//    "fog" : "../assets/icons/cloud.png",
+//    "wind" : "../assets/icons/windy.png",
+//    "cloudy" : "../assets/icons/cloud.png",
+//    "partly-cloudy-day" : "../assets/icons/cloudy.png",
+//    "clear-day" : "../assets/icons/sun.png",
+//    "partly-cloudy-night" : "../assets/icons/cloudy.png",
+//    "clear-night" : "../assets/icons/sun.png",
+//};
 
 export default function buildHTML() {
     const forecastDiv = document.getElementById("forecastDiv");
@@ -62,18 +75,24 @@ export default function buildHTML() {
         const currentTempMax = element.querySelector(".currentTempMax");
 
         currentTemp.innerText = unitTransform(weatherData.currentWeather.temp, transform);
+        
         // Display Icon of current weather
         emptyElement(currentIcon);
-        const imgLink =  MAPICONS.weatherData.currentWeather.icon;
-        const img = new Image(); // Create a new Image object
-        img.onload = () => {
-            // You can now use the image, e.g., append it to the DOM
-            currentIcon.appendChild(img);
-        };
-        img.src = imgLink;
+        const imgLink = MAPICONS[weatherData.currentWeather.icon];
+        const img = loadIcon(imgLink, true);
+        currentIcon.appendChild(img);
 
         currentTempMin.innerText = "T: " + unitTransform(weatherData.weatherForecast[0].tempmin, transform);
         currentTempMax.innerText = "H: " + unitTransform(weatherData.weatherForecast[0].tempmax), transform;
+    }
+
+    function loadIcon(path, large = false) {
+        const img = document.createElement("img");
+        img.src = path;
+        const classIcon = large ? "largeIcon" : "Icon";
+        img.classList.add(classIcon);
+        return img
+        
     }
 
     function buildHeader(cityName) {

@@ -93,6 +93,15 @@ form {
     grid-template-columns: 1fr 1fr;
 }
 
+.currentIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weatherInfo {
+    height: 400px;
+}
 .cell {
     display: flex;
     gap: 10px;
@@ -130,4 +139,21 @@ body {
 .smallText {
     text-align: center;
 }
+
+.largeIcon {
+    width: 80px;
+}
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
 

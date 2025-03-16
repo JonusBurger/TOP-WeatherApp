@@ -21,6 +21,7 @@ export default function formHandler() {
 
     async function eventHandler(e) {
         e.preventDefault();
+        buildHTMLInstance.addSceletonAll();
         const city = getFormInfo();
         if (!city) {
             return

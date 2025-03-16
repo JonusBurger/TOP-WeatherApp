@@ -13,17 +13,6 @@ const MAPICONS = {
     "partly-cloudy-night" : iconContext('./cloudy.png'),
     "clear-night" : iconContext('./sun.png'),
 };
-//const MAPICONS = {
-//    "snow" : "../assets/icons/snowy.png",
-//    "rain" : "../assets/icons/rainy.png",
-//    "fog" : "../assets/icons/cloud.png",
-//    "wind" : "../assets/icons/windy.png",
-//    "cloudy" : "../assets/icons/cloud.png",
-//    "partly-cloudy-day" : "../assets/icons/cloudy.png",
-//    "clear-day" : "../assets/icons/sun.png",
-//    "partly-cloudy-night" : "../assets/icons/cloudy.png",
-//    "clear-night" : "../assets/icons/sun.png",
-//};
 
 export default function buildHTML() {
     const forecastDiv = document.getElementById("forecastDiv");
@@ -66,6 +55,7 @@ export default function buildHTML() {
         const basicDataDiv = currentDataDiv.querySelector(".basicDiv");
         emptyElement(basicDataDiv);
         buildTodayBasicInfo(basicDataDiv, weatherData, transform);
+        removeSkeletonFromElement(currentDataDiv)
     }
 
     function buildTodayBasicInfo(element, weatherData, transform) {
@@ -75,7 +65,7 @@ export default function buildHTML() {
         const currentTempMax = element.querySelector(".currentTempMax");
 
         currentTemp.innerText = unitTransform(weatherData.currentWeather.temp, transform);
-        
+
         // Display Icon of current weather
         emptyElement(currentIcon);
         const imgLink = MAPICONS[weatherData.currentWeather.icon];
@@ -97,6 +87,7 @@ export default function buildHTML() {
 
     function buildHeader(cityName) {
         headerSection.innerText = cityName;
+        removeSkeletonFromElement(headerSection);
     }
 
     function buildPage(weatherData, transform = false) {
@@ -112,10 +103,22 @@ export default function buildHTML() {
         for (let day of weatherData.weatherForecast.slice(1,8)) {
             buildCell(day, transform);
         }
+        removeSkeletonFromElement(forecastDiv)
+    }
+
+    function addSceletonAll() {
+        forecastDiv.classList.add("skeleton");
+        headerSection.classList.add("skeleton");
+        currentDataDiv.classList.add("skeleton");
+    }
+
+    function removeSkeletonFromElement(element) {
+        element.classList.remove("skeleton");
     }
 
     return {
-        buildPage
+        buildPage,
+        addSceletonAll
     }
 }
 

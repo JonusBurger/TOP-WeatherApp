@@ -1,5 +1,6 @@
 import callWeatherAPI from "./callAPI";
 import buildHTML from "./htmlHandler";
+import errorHandler from "./errorHandler";
 
 export default function formHandler() {
     const formInput = document.getElementById("city");
@@ -29,8 +30,8 @@ export default function formHandler() {
         try {
             const result = await callWeatchAPIInstance.fetchCityData(city);
             buildHTMLInstance.buildPage(result);  
-        } catch {
-            console.log("Bad Request")
+        } catch(error) {
+            errorHandler(error);
         }
     }
 

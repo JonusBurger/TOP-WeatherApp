@@ -13,20 +13,27 @@
         <div class="input">
             <form action="" id="searchCity">
                 <div class="row">
-                    <label for="city">City: </label>
-                    <input type="text" id="city">
+                    <input type="text" id="city" placeholder="Cityname">
                     <button type="submit" form="searchCity" id="btn">Search</button>
                 </div>
             </form>
+            <div class="centerDiv">
+                <p class="smallText" id="farenheit">°F</p>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                <p class="smallText" id="celsius">°C</p>
+            </div>
         </div>
         <div class="mainContent">
             <div class="cityHeader bigText"></div>
             <div class="currentDataDiv">
                 <div class="basicDiv">
-                    <div class="currentTemp midText"></div>
+                    <div class="centerDiv currentTemp bigText"></div>
                     <div class="currentIcon midText"></div>
-                    <div class="currentTempMin smallText"></div>
-                    <div class="currentTempMax smallText"></div>
+                    <div class="centerRightDiv currentTempMin midText"></div>
+                    <div class="centerLeftDiv currentTempMax midText"></div>
                 </div>
                 <div class="extraData">
         

@@ -24,6 +24,13 @@ export default function buildHTML() {
         forecastDiv.replaceChildren();
     }
 
+    function addTextToElement(element, text) {
+        element.replaceChildren();
+        const textElement = document.createElement("p");
+        textElement.innerText = text;
+        element.appendChild(textElement);
+    }
+
     function emptyElement(element) {
         for (let child of element.childNodes) {
             child.innerText = "";
@@ -42,11 +49,11 @@ export default function buildHTML() {
         const rainChance = newCell.querySelector(".rain");
         const icons = newCell.querySelector(".icons");
 
-        dayDate.innerText = dayInfo.datetime;
-        avgTemp.innerText = unitTransform(dayInfo.temp, transform);
-        minTemp.innerText = "T: " + unitTransform(dayInfo.tempmin, transform);
-        maxTemp.innerText = "H: " + unitTransform(dayInfo.tempmax, transform);
-        rainChance.innerText = `${dayInfo.precipprob}% Chance of rain`;
+        addTextToElement(dayDate, dayInfo.datetime);
+        addTextToElement(avgTemp, unitTransform(dayInfo.temp, transform));
+        addTextToElement(minTemp, "T: " + unitTransform(dayInfo.tempmin, transform));
+        addTextToElement(maxTemp, "H: " + unitTransform(dayInfo.tempmax, transform));
+        addTextToElement(rainChance, `${dayInfo.precipprob}% Chance of rain`);
         
         forecastDiv.appendChild(newCell)
     }
@@ -64,7 +71,7 @@ export default function buildHTML() {
         const currentTempMin = element.querySelector(".currentTempMin");
         const currentTempMax = element.querySelector(".currentTempMax");
 
-        currentTemp.innerText = unitTransform(weatherData.currentWeather.temp, transform);
+        addTextToElement(currentTemp, unitTransform(weatherData.currentWeather.temp, transform));
 
         // Display Icon of current weather
         emptyElement(currentIcon);
@@ -72,8 +79,8 @@ export default function buildHTML() {
         const img = loadIcon(imgLink, true);
         currentIcon.appendChild(img);
 
-        currentTempMin.innerText = "T: " + unitTransform(weatherData.weatherForecast[0].tempmin, transform);
-        currentTempMax.innerText = "H: " + unitTransform(weatherData.weatherForecast[0].tempmax), transform;
+        addTextToElement(currentTempMin, "T: " + unitTransform(weatherData.weatherForecast[0].tempmin, transform));
+        addTextToElement(currentTempMax, "H: " + unitTransform(weatherData.weatherForecast[0].tempmax), transform);
     }
 
     function loadIcon(path, large = false) {
@@ -103,7 +110,7 @@ export default function buildHTML() {
         for (let day of weatherData.weatherForecast.slice(1,8)) {
             buildCell(day, transform);
         }
-        removeSkeletonFromElement(forecastDiv)
+        removeSkeletonFromElement(forecastDiv);
     }
 
     function addSceletonAll() {

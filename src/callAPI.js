@@ -16,13 +16,11 @@ export default function callWeatchAPI() {
     }
 
     async function processData(input) {
-        try {
-            const responseJSON = await input.json();
-            const output = {"city": responseJSON.resolvedAddress, "currentWeather": responseJSON.currentConditions, "weatherForecast" : responseJSON.days};
-            console.log(responseJSON);
-        } catch(error) {
-            errorHandler(error);
-        }
+
+        const responseJSON = await input.json();
+        const output = {"city": responseJSON.resolvedAddress, "currentWeather": responseJSON.currentConditions, "weatherForecast" : responseJSON.days};
+        console.log(responseJSON);
+
 
         return output
     }

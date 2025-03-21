@@ -80,7 +80,7 @@ export default function buildHTML() {
         currentIcon.appendChild(img);
 
         addTextToElement(currentTempMin, "T: " + unitTransform(weatherData.weatherForecast[0].tempmin, transform));
-        addTextToElement(currentTempMax, "H: " + unitTransform(weatherData.weatherForecast[0].tempmax), transform);
+        addTextToElement(currentTempMax, "H: " + unitTransform(weatherData.weatherForecast[0].tempmax, transform));
     }
 
     function loadIcon(path, large = false) {

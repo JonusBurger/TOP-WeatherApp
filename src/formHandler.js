@@ -9,6 +9,10 @@ export default function formHandler() {
     const callWeatchAPIInstance = callWeatherAPI();
     const buildHTMLInstance = buildHTML();
 
+    // Handler for Changing Units
+    const switchBtn = document.getElementById("switch");
+    let tempretaureTransformerActive = false;
+
     function getFormInfo() {
         const output = formInput.value;
         formInput.value = "";
@@ -29,11 +33,18 @@ export default function formHandler() {
         }
         try {
             const result = await callWeatchAPIInstance.fetchCityData(city);
-            buildHTMLInstance.buildPage(result);  
+            buildHTMLInstance.buildPage(result, tempretaureTransformerActive);  
         } catch(error) {
             errorHandler(error);
         }
     }
 
     btn.addEventListener("click", (e) => eventHandler(e));
+    switchBtn.addEventListener("change", function() {
+        if (this.checked) {
+            tempretaureTransformerActive = true;
+        } else {
+            tempretaureTransformerActive = false;
+        }
+        })
 }

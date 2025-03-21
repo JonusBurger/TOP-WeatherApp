@@ -1,6 +1,7 @@
 import callWeatherAPI from "./callAPI";
 import buildHTML from "./htmlHandler";
 import errorHandler from "./errorHandler";
+import switchHandler from "./switchHandler";
 
 export default function formHandler() {
     const formInput = document.getElementById("city");
@@ -12,6 +13,8 @@ export default function formHandler() {
     // Handler for Changing Units
     const switchBtn = document.getElementById("switch");
     let tempretaureTransformerActive = false;
+    const switchHandlerInstance = switchHandler();
+    let weatherData;
 
     function getFormInfo() {
         const output = formInput.value;
@@ -34,6 +37,7 @@ export default function formHandler() {
         try {
             const result = await callWeatchAPIInstance.fetchCityData(city);
             buildHTMLInstance.buildPage(result, tempretaureTransformerActive);  
+            weatherData = result;
         } catch(error) {
             errorHandler(error);
         }
@@ -43,8 +47,16 @@ export default function formHandler() {
     switchBtn.addEventListener("change", function() {
         if (this.checked) {
             tempretaureTransformerActive = true;
+            switchHandlerInstance.setCelsiusActive();
+            if (weatherData) {
+                buildHTMLInstance.buildPage(weatherData, tempretaureTransformerActive);
+            }
         } else {
             tempretaureTransformerActive = false;
+            switchHandlerInstance.setFarenheitActive();
+            if (weatherData) {
+                buildHTMLInstance.buildPage(weatherData, tempretaureTransformerActive);
+            }
         }
         })
 }

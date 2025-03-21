@@ -1,3 +1,4 @@
+import dateHandler from "./datehandler";
 import unitTransform from "./unitTransformer";
 
 
@@ -19,6 +20,9 @@ export default function buildHTML() {
     const headerSection = document.querySelector(".cityHeader");
     const cellSceleton = document.querySelector(".cell");
     const currentDataDiv = document.querySelector(".currentDataDiv");
+
+    // build handlers
+    const dateHandlerInstance = dateHandler();
 
     function emptyCells() {
         forecastDiv.replaceChildren();
@@ -49,20 +53,22 @@ export default function buildHTML() {
         const rainChance = newCell.querySelector(".rain");
         const icons = newCell.querySelector(".icons");
 
-        addTextToElement(dayDate, dayInfo.datetime);
+        // Transform DateInfo
+
+        addTextToElement(dayDate, dateHandlerInstance.getDayName(dayInfo.datetime));
         addTextToElement(avgTemp, unitTransform(dayInfo.temp, transform));
         addTextToElement(minTemp, "T: " + unitTransform(dayInfo.tempmin, transform));
         addTextToElement(maxTemp, "H: " + unitTransform(dayInfo.tempmax, transform));
         addTextToElement(rainChance, `${dayInfo.precipprob}% Chance of rain`);
         
-        forecastDiv.appendChild(newCell)
+        forecastDiv.appendChild(newCell);
     }
 
     function buildTodayInfo(weatherData, transform) {
         const basicDataDiv = currentDataDiv.querySelector(".basicDiv");
         emptyElement(basicDataDiv);
         buildTodayBasicInfo(basicDataDiv, weatherData, transform);
-        removeSkeletonFromElement(currentDataDiv)
+        removeSkeletonFromElement(currentDataDiv);
     }
 
     function buildTodayBasicInfo(element, weatherData, transform) {

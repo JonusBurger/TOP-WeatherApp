@@ -102,14 +102,25 @@ form {
 
 .weatherInfo {
     height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 .cell {
     display: flex;
     gap: 10px;
+    height: 30px;
+    align-items: center;
 }
 
 .temp {
     display: flex;
+    width: 140px;
+    gap: 5px;
+}
+
+.day {
+  width: 80px;
 }
 
 .centerDiv {

@@ -47,7 +47,7 @@ export default function buildHTML() {
 
         // Fill Sceleton with day Data from API Call
         const dayDate = newCell.querySelector(".day");
-        const avgTemp = newCell.querySelector(".medianTemp");
+        // const avgTemp = newCell.querySelector(".medianTemp");
         const minTemp = newCell.querySelector(".mintemp");
         const maxTemp = newCell.querySelector(".maxtemp");
         const rainChance = newCell.querySelector(".rain");
@@ -56,7 +56,7 @@ export default function buildHTML() {
         // Transform DateInfo
 
         addTextToElement(dayDate, dateHandlerInstance.getDayName(dayInfo.datetime));
-        addTextToElement(avgTemp, unitTransform(dayInfo.temp, transform));
+        // addTextToElement(avgTemp, unitTransform(dayInfo.temp, transform));
         addTextToElement(minTemp, "T: " + unitTransform(dayInfo.tempmin, transform));
         addTextToElement(maxTemp, "H: " + unitTransform(dayInfo.tempmax, transform));
         addTextToElement(rainChance, `${dayInfo.precipprob}% Chance of rain`);
